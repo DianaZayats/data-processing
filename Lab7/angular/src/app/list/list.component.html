@@ -1,0 +1,84 @@
+<div class="container">
+  <h2 class="title-center">{{ title }}</h2>
+  <div class="album-grid">
+    <div class="album-card" *ngFor="let u of albumsList" (click)="onSelect(u)">
+      <img
+        [src]="u.release_image"
+        alt="{{ u.album_title }}"
+        class="album-image"
+      />
+      <div class="album-info">
+        <h3>{{ u.album_title }}</h3>
+        <p>{{ u.artist }}</p>
+        <p>{{ u.release_year }}</p>
+        <p>{{ u.number_of_songs }} songs</p>
+      </div>
+      <span class="delete-btn" (click)="deleteAlbum(u)">X</span>
+    </div>
+  </div>
+
+  <h3 (click)="showAddForm = !showAddForm">Add album</h3>
+  <form
+    *ngIf="showAddForm"
+    #form1="ngForm"
+    (ngSubmit)="addAlbum(form1.value)"
+    class="album-form"
+  >
+    <div class="form-row">
+      <div class="form-group">
+        <label for="album_title">Album Title:</label>
+        <input
+          type="text"
+          id="album_title"
+          name="album_title"
+          ngModel
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist" name="artist" ngModel required />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="release_year">Release Year:</label>
+        <input
+          type="number"
+          id="release_year"
+          name="release_year"
+          ngModel
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="number_of_songs">Number of Songs:</label>
+        <input
+          type="number"
+          id="number_of_songs"
+          name="number_of_songs"
+          ngModel
+          required
+        />
+      </div>
+    </div>
+
+    <label for="release_image">Release Image:</label>
+    <input
+      type="url"
+      id="release_image"
+      name="release_image"
+      ngModel
+      required
+    /><br /><br />
+
+    <input type="submit" value="Add album" />
+  </form>
+
+  <app-update
+    [album]="selectedAlbum"
+    (updated)="updateAlbums()"
+    class="update-album-wrapper"
+  ></app-update>
+</div>
