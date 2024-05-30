@@ -1,0 +1,40 @@
+<div *ngIf="album" class="album-form album-form--update">
+  <h3>Update album</h3>
+
+  <div class="form-row">
+    <div class="form-group">
+      <input
+        type="text"
+        [(ngModel)]="album.album_title"
+        placeholder="Album Title"
+      />
+    </div>
+    <div class="form-group">
+      <input type="text" [(ngModel)]="album.artist" placeholder="Artist" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <input
+        type="number"
+        [(ngModel)]="album.release_year"
+        placeholder="Release Year"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="number"
+        [(ngModel)]="album.number_of_songs"
+        placeholder="Number of Songs"
+      />
+    </div>
+  </div>
+
+  <input
+    type="url"
+    [(ngModel)]="album.release_image"
+    placeholder="Release Image URL"
+  /><br /><br />
+  <button (click)="updateAlbums()">Update album</button>
+</div>

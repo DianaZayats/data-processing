@@ -1,3 +1,5 @@
 .metadata
 node_modules
 .settings
+cache
+.fake
